@@ -2,6 +2,7 @@ const webpack = require("webpack");
 const path = require('path');
 const env = process.env.NODE_ENV;
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
+const srcRoot = path.resolve(__dirname,"src");
 
 var plugins = [
   new webpack.DefinePlugin({
@@ -20,6 +21,7 @@ var plugins = [
 ];
 
 module.exports = {
+  context: srcRoot,
   entry:["index.js"],
   //devtool: 'inline-source-map',
   plugins: plugins,
@@ -30,11 +32,11 @@ module.exports = {
     filename: env === "production" ? "basic-library.min.js" : "basic-library.js"
   },
   resolve:{
-    modules: ["./",path.resolve(__dirname,"src"), "node_modules"],
+    modules: ["node_modules",".",srcRoot],
     alias: {
-      Basic: path.resolve(__dirname,"src")
+      Basic: srcRoot
     },
-    extensions: ["*",".js"]
+    extensions: ["*",".js",".css"]
   },
   module:{
     rules: [
