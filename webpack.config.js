@@ -3,9 +3,6 @@ const path = require('path');
 const env = process.env.NODE_ENV;
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 
-
-var jsName             = env === 'production' ? 'basic-[hash].js' : 'basic.js';
-
 var plugins = [
   new webpack.DefinePlugin({
     'process.env': {
@@ -30,7 +27,7 @@ module.exports = {
     path: `${__dirname}/dist`,
     library: 'Basic',
     libraryTarget: 'var',
-    filename: jsName
+    filename: env === "production" ? "basic-library.min.js" : "basic-library.js"
   },
   resolve:{
     modules: ["./",path.resolve(__dirname,"src"), "node_modules"],

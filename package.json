@@ -2,7 +2,8 @@
   "name": "basic-library",
   "version": "1.0.0",
   "description": "another SPA framework - a simple set of few subsystems",
-  "main": "index.js",
+  "main": "dist/basic-library.js",
+  "module": "src/index.js",
   "scripts": {
     "test": "karma start --single-run",
     "build": "webpack",
