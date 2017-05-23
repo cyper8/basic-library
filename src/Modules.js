@@ -2,7 +2,7 @@
 
 /* global location, document */
 import 'ClassExtension';
-import element from 'UI/Element';
+import { default as UI } from 'UI';
 import Progressable from 'UI/Progressable';
 
 export const ModuleStack = (function ModuleStack() {
@@ -33,13 +33,13 @@ export const ModuleStack = (function ModuleStack() {
                 addStyles(params.module.data.style,console.log.bind(window,params.module.name+"\'s styles are loaded"));
                 var mtarr = params.module.data.type.split("."),mtf,mte="",mts;
                 if (mtarr.length==1) {
-                    mtf = element;mte = "div";mts="."+mtarr[0];
+                    mtf = UI.element;mte = "div";mts="."+mtarr[0];
                 }
                 else {
-                    if (typeof App.UI[mtarr[0]] === 'function')
-                        mtf = App.UI[mtarr[0]];
+                    if (typeof UI[mtarr[0]] === 'function')
+                        mtf = UI[mtarr[0]];
                     else {
-                        mtf = element;
+                        mtf = UI.element;
                         mte = (mtarr[0] == "")?("div"):(mtarr[0]);
                     }
                     mts = "."+mtarr.slice(1).join(".");

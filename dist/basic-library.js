@@ -370,29 +370,93 @@ exports.default = section;
 
 
 Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _addWheelListener = __webpack_require__(18);
+
+var _addWheelListener2 = _interopRequireDefault(_addWheelListener);
+
+var _isScrolledIntoView = __webpack_require__(19);
+
+var _isScrolledIntoView2 = _interopRequireDefault(_isScrolledIntoView);
+
+var _Element = __webpack_require__(1);
+
+var _Element2 = _interopRequireDefault(_Element);
+
+var _Section = __webpack_require__(6);
+
+var _Controls = __webpack_require__(15);
+
+var _Progress = __webpack_require__(16);
+
+var _Progress2 = _interopRequireDefault(_Progress);
+
+var _Progressable = __webpack_require__(2);
+
+var _Progressable2 = _interopRequireDefault(_Progressable);
+
+var _Scroll = __webpack_require__(5);
+
+var _Scroll2 = _interopRequireDefault(_Scroll);
+
+var _Scrollable = __webpack_require__(17);
+
+var _Scrollable2 = _interopRequireDefault(_Scrollable);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+exports.default = {
+  addWheelListener: _addWheelListener2.default,
+  isScrolledIntoView: _isScrolledIntoView2.default,
+  element: _Element2.default,
+  section: _Section.section,
+  selector: _Controls.selector,
+  label: _Controls.label,
+  progress: _Progress2.default,
+  scroll: _Scroll2.default,
+  DualState: _Controls.DualState,
+  Pushable: _Controls.Pushable,
+  Switchable: _Controls.Switchable,
+  PushButton: _Controls.PushButton,
+  ToggleButton: _Controls.ToggleButton,
+  Progressable: _Progressable2.default,
+  Extendable: _Section.Extendable,
+  Scrollable: _Scrollable2.default
+};
+
+/***/ }),
+/* 8 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
     value: true
 });
 exports.App = App;
 
-var _UI = __webpack_require__(18);
+var _UI = __webpack_require__(7);
 
 var _UI2 = _interopRequireDefault(_UI);
 
-var _Modules = __webpack_require__(10);
+var _Modules = __webpack_require__(11);
 
-var _CookieStack = __webpack_require__(9);
+var _CookieStack = __webpack_require__(10);
 
 var _CookieStack2 = _interopRequireDefault(_CookieStack);
 
-var _Network = __webpack_require__(11);
+var _Network = __webpack_require__(12);
 
 var _Network2 = _interopRequireDefault(_Network);
 
-var _Reader = __webpack_require__(12);
+var _Reader = __webpack_require__(13);
 
 var _Reader2 = _interopRequireDefault(_Reader);
 
-var _TimerStack = __webpack_require__(13);
+var _TimerStack = __webpack_require__(14);
 
 var _TimerStack2 = _interopRequireDefault(_TimerStack);
 
@@ -436,7 +500,7 @@ function App(dependencies) {
 }
 
 /***/ }),
-/* 8 */
+/* 9 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -527,7 +591,7 @@ function ajax(req) {
 }
 
 /***/ }),
-/* 9 */
+/* 10 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -608,7 +672,7 @@ var CookieStack = function () {
 exports.default = CookieStack;
 
 /***/ }),
-/* 10 */
+/* 11 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -629,9 +693,9 @@ exports.addStyles = addStyles;
 
 __webpack_require__(0);
 
-var _Element = __webpack_require__(1);
+var _UI = __webpack_require__(7);
 
-var _Element2 = _interopRequireDefault(_Element);
+var _UI2 = _interopRequireDefault(_UI);
 
 var _Progressable = __webpack_require__(2);
 
@@ -668,10 +732,10 @@ var ModuleStack = exports.ModuleStack = function ModuleStack() {
                     mte = "",
                     mts;
                 if (mtarr.length == 1) {
-                    mtf = _Element2.default;mte = "div";mts = "." + mtarr[0];
+                    mtf = _UI2.default.element;mte = "div";mts = "." + mtarr[0];
                 } else {
-                    if (typeof App.UI[mtarr[0]] === 'function') mtf = App.UI[mtarr[0]];else {
-                        mtf = _Element2.default;
+                    if (typeof _UI2.default[mtarr[0]] === 'function') mtf = _UI2.default[mtarr[0]];else {
+                        mtf = _UI2.default.element;
                         mte = mtarr[0] == "" ? "div" : mtarr[0];
                     }
                     mts = "." + mtarr.slice(1).join(".");
@@ -814,7 +878,7 @@ function addStyles(styles, callback) {
 }
 
 /***/ }),
-/* 11 */
+/* 12 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -840,7 +904,7 @@ var _Suspendable = __webpack_require__(4);
 
 var _Suspendable2 = _interopRequireDefault(_Suspendable);
 
-var _Ajax = __webpack_require__(8);
+var _Ajax = __webpack_require__(9);
 
 var _Ajax2 = _interopRequireDefault(_Ajax);
 
@@ -926,7 +990,7 @@ exports.default = (0, _Suspendable2.default)(function Network() {
 }.extends((0, _Progressable2.default)(_Fifo2.default)));
 
 /***/ }),
-/* 12 */
+/* 13 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -979,7 +1043,7 @@ exports.default = (0, _Suspendable2.default)(function Reader() {
 }.extends((0, _Progressable2.default)(_Fifo2.default)));
 
 /***/ }),
-/* 13 */
+/* 14 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1042,7 +1106,7 @@ var TimerStack = function () {
 exports.default = TimerStack;
 
 /***/ }),
-/* 14 */
+/* 15 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1218,7 +1282,7 @@ function ToggleButton(id, val) {
 };
 
 /***/ }),
-/* 15 */
+/* 16 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1303,7 +1367,7 @@ function progress(desc) {
 };
 
 /***/ }),
-/* 16 */
+/* 17 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1507,7 +1571,7 @@ function Scrollable(elem) {
 }
 
 /***/ }),
-/* 17 */
+/* 18 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1577,70 +1641,6 @@ function addWheelListener(elem, callback, useCapture) {
 };
 
 /***/ }),
-/* 18 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-
-var _addWheelListener = __webpack_require__(17);
-
-var _addWheelListener2 = _interopRequireDefault(_addWheelListener);
-
-var _isScrolledIntoView = __webpack_require__(19);
-
-var _isScrolledIntoView2 = _interopRequireDefault(_isScrolledIntoView);
-
-var _Element = __webpack_require__(1);
-
-var _Element2 = _interopRequireDefault(_Element);
-
-var _Section = __webpack_require__(6);
-
-var _Controls = __webpack_require__(14);
-
-var _Progress = __webpack_require__(15);
-
-var _Progress2 = _interopRequireDefault(_Progress);
-
-var _Progressable = __webpack_require__(2);
-
-var _Progressable2 = _interopRequireDefault(_Progressable);
-
-var _Scroll = __webpack_require__(5);
-
-var _Scroll2 = _interopRequireDefault(_Scroll);
-
-var _Scrollable = __webpack_require__(16);
-
-var _Scrollable2 = _interopRequireDefault(_Scrollable);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-exports.default = {
-  addWheelListener: _addWheelListener2.default,
-  isScrolledIntoView: _isScrolledIntoView2.default,
-  element: _Element2.default,
-  section: _Section.section,
-  selector: _Controls.selector,
-  label: _Controls.label,
-  progress: _Progress2.default,
-  scroll: _Scroll2.default,
-  DualState: _Controls.DualState,
-  Pushable: _Controls.Pushable,
-  Switchable: _Controls.Switchable,
-  PushButton: _Controls.PushButton,
-  ToggleButton: _Controls.ToggleButton,
-  Progressable: _Progressable2.default,
-  Extendable: _Section.Extendable,
-  Scrollable: _Scrollable2.default
-};
-
-/***/ }),
 /* 19 */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -1669,7 +1669,7 @@ function isScrolledIntoView(el) {
 /* 21 */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(7);
+module.exports = __webpack_require__(8);
 
 
 /***/ })
