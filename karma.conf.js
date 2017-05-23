@@ -20,8 +20,7 @@ module.exports = function(config) {
 
     files: [
       'node_modules/promise-polyfill/promise.min.js',
-      'src/client.js',
-      'src/trinfo.js',
+      'src/index.js',
       'test/**/*test.js',
     ],
 
@@ -31,9 +30,8 @@ module.exports = function(config) {
 
 
     preprocessors: {
-      'src/client.js': ["webpack"],
-      'test/**/*test.js': ["webpack"],
-      'src/trinfo.js': ['webpack']
+      'src/index.js': ["webpack"],
+      'test/**/*test.js': ["webpack"]
     },
 
     webpack: webpackConf,
@@ -48,7 +46,7 @@ module.exports = function(config) {
     reporters: ['progress'],
 
 
-    port: 8082,
+    port: 8080,
 
 
     colors: true,

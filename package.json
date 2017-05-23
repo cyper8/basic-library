@@ -4,7 +4,9 @@
   "description": "another SPA framework - a simple set of few subsystems",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "karma start --single-run",
+    "build": "webpack",
+    "release": "rm dist/* && NODE_ENV=production webpack"
   },
   "repository": {
     "type": "git",
@@ -21,6 +23,9 @@
     "babel-preset-babili": "0.0.12",
     "babel-preset-env": "^1.4.0",
     "babili": "0.0.12",
+    "css-loader": "^0.28.2",
+    "extract-text-webpack-plugin": "^2.1.0",
+    "file-loader": "^0.11.1",
     "jasmine": "^2.6.0",
     "karma": "^1.7.0",
     "karma-chrome-launcher": "^2.1.1",
@@ -29,7 +34,10 @@
     "karma-phantomjs-launcher": "^1.0.4",
     "karma-webpack": "^2.0.3",
     "phantomjs-prebuilt": "^2.1.14",
+    "promise-polyfill": "^6.0.2",
+    "style-loader": "^0.18.0",
+    "url-loader": "^0.5.8",
     "webpack": "^2.5.1"
-  }
+  },
   "homepage": "https://github.com/cyper8/basic-library#readme"
 }

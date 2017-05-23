@@ -1,7 +1,7 @@
 /* global describe, it, spyOn, spyOnProperty, expect,
 beforeAll, beforeEach, afterAll, afterEach, Element */
 
-import 'Basic/ClassExtension';
+import 'ClassExtension';
 // import 'crossBrowserInnerText.js';
 // import { default as toA } from 'toArray.js';
 // import Fifo from 'Fifo';

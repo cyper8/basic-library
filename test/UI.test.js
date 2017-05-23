@@ -1,7 +1,8 @@
 /* global describe, it, spyOn, spyOnProperty, expect,
 beforeAll, beforeEach, afterAll, afterEach, Element */
 
-import { default as UI } from 'Basic/UI';
+import { default as Basic } from 'Basic';
+var UI = Basic.UI;
 
 describe("Basic/UI provides", function(){
   describe("element factory", function(){
