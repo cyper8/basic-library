@@ -79,3 +79,5 @@ export function ajax(req){
     })();
     return xhr;
 }
+
+export default ajax;

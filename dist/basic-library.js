@@ -590,6 +590,8 @@ function ajax(req) {
     return xhr;
 }
 
+exports.default = ajax;
+
 /***/ }),
 /* 10 */
 /***/ (function(module, exports, __webpack_require__) {
