@@ -1,0 +1,35 @@
+{
+  "name": "basic-library",
+  "version": "1.0.0",
+  "description": "another SPA framework - a simple set of few subsystems",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/cyper8/basic-library.git"
+  },
+  "author": "Anton Yashchuk <anton.yashchuk@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/cyper8/basic-library/issues"
+  },
+  "devDependencies": {
+    "babel-core": "^6.24.1",
+    "babel-loader": "^7.0.0",
+    "babel-preset-babili": "0.0.12",
+    "babel-preset-env": "^1.4.0",
+    "babili": "0.0.12",
+    "jasmine": "^2.6.0",
+    "karma": "^1.7.0",
+    "karma-chrome-launcher": "^2.1.1",
+    "karma-firefox-launcher": "^1.0.1",
+    "karma-jasmine": "^1.1.0",
+    "karma-phantomjs-launcher": "^1.0.4",
+    "karma-webpack": "^2.0.3",
+    "phantomjs-prebuilt": "^2.1.14",
+    "webpack": "^2.5.1"
+  }
+  "homepage": "https://github.com/cyper8/basic-library#readme"
+}
