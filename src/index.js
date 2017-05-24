@@ -20,7 +20,8 @@ const Basic = {
 
 export default Basic;
   
-export function App(dependencies){
+export function App(name,dependencies,root){
+    if (!name) throw new Error("App name cannot be empty");
     var dep = dependencies;
     if (!dep || (!dep.length)) {
         
@@ -37,7 +38,7 @@ export function App(dependencies){
             dependencies.push(c);
         }
     }
-    return dependencies.reduce(function(m,e,i,a){
+    return (root || document)[name]=dependencies.reduce(function(m,e,i,a){
         m[e]=(Basic.System[e]) ? new Basic.System[e]() : "unknown symbol "+e;
         return m;
     },{});

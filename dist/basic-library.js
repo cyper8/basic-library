@@ -476,7 +476,8 @@ var Basic = {
 };
 
 exports.default = Basic;
-function App(dependencies) {
+function App(name, dependencies, root) {
+    if (!name) throw new Error("App name cannot be empty");
     var dep = dependencies;
     if (!dep || !dep.length) {
 
@@ -493,7 +494,7 @@ function App(dependencies) {
             dependencies.push(c);
         }
     }
-    return dependencies.reduce(function (m, e, i, a) {
+    return (root || document)[name] = dependencies.reduce(function (m, e, i, a) {
         m[e] = Basic.System[e] ? new Basic.System[e]() : "unknown symbol " + e;
         return m;
     }, {});
@@ -706,9 +707,8 @@ var _Progressable2 = _interopRequireDefault(_Progressable);
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var ModuleStack = exports.ModuleStack = function ModuleStack() {
-    this.loaded = [];
+    if (!ModuleStack.modules) ModuleStack.modules = {};
     this.add = function (params) {
-
         /*
         params = {
             root: //root of the module !element!,
@@ -725,6 +725,9 @@ var ModuleStack = exports.ModuleStack = function ModuleStack() {
             }
         }
         */
+        if (!ModuleStack.modules[params.module.name]) {
+            ModuleStack.modules[params.module.name] = params.module.data;
+        }
         var newnode;
         if (_typeof(params.root) === 'object') {
             if (_typeof(params.root[params.module.name]) === 'object') newnode = params.root[params.module.name];else {
@@ -762,7 +765,7 @@ var ModuleStack = exports.ModuleStack = function ModuleStack() {
                             e.stopPropagation();
                         });
                     } else {
-                        if (typeof window[params.module.name] === "function") return null;
+                        if (typeof ModuleStack.modules[params.module.name].entry === "function") return null;
                         if (this.loadstate(params.module.name) == null) {
                             this.push({
                                 mod: params.module.name,
@@ -808,8 +811,7 @@ var ModuleStack = exports.ModuleStack = function ModuleStack() {
         for (var i = 0; i < this.length; i++) {
             if (this[i].mod == name) {
                 var m = this.splice(i, 1);
-                this.loaded.push(m);
-                return window[m.name](m.context);
+                return ModuleStack.modules[m.name].entry(m.context);
             }
         }
     };
@@ -942,7 +944,7 @@ exports.default = (0, _Suspendable2.default)(function Network() {
         }
         if (this.filter(function (e, i, a) {
             return e.method == r.method && e.url == r.url && e.params == e.params && e.resulthandler == r.resulthandler;
-        }).length > 0) {
+        }).length == 0) {
             this.push(r);
             this.action();
         }

@@ -6,9 +6,8 @@ import { default as UI } from 'UI';
 import Progressable from 'UI/Progressable';
 
 export const ModuleStack = (function ModuleStack() {
-    this.loaded = [];
+    if (!ModuleStack.modules) ModuleStack.modules = {};
 	this.add = function(params) {
-
     	/*
     	params = {
     	    root: //root of the module !element!,
@@ -25,6 +24,9 @@ export const ModuleStack = (function ModuleStack() {
     	    }
     	}
     	*/
+    	if (!ModuleStack.modules[params.module.name]){
+            ModuleStack.modules[params.module.name] = params.module.data;
+    	}
         var newnode;
         if (typeof params.root === 'object') {
             if (typeof params.root[params.module.name] === 'object')
@@ -66,7 +68,7 @@ export const ModuleStack = (function ModuleStack() {
                         });
                     }
                     else {
-                        if (typeof window[params.module.name] === "function") return null;
+                        if (typeof ModuleStack.modules[params.module.name].entry === "function") return null;
                         if (this.loadstate(params.module.name) == null) {
                             this.push({
                                 mod:params.module.name,
@@ -114,8 +116,7 @@ export const ModuleStack = (function ModuleStack() {
 	    for(var i=0;i<this.length;i++){
 	        if (this[i].mod == name){
 	            var m = this.splice(i,1);
-	            this.loaded.push(m);
-	            return window[m.name](m.context);
+	            return ModuleStack.modules[m.name].entry(m.context);
 	        }
 	    }
 	};
@@ -124,7 +125,7 @@ export const ModuleStack = (function ModuleStack() {
 			if (this[i].mod == n) return this[i];
 		}
 		return null;
-	}
+	};
 }).extends(Progressable(Array));
 
 function checkRes(restype,url){

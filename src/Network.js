@@ -37,7 +37,7 @@ export default Suspendable((function Network() {
                     (e.url == r.url) &&
                     (e.params == e.params) &&
                     (e.resulthandler == r.resulthandler));
-        }).length > 0) {
+        }).length == 0) {
             this.push(r);
             this.action();
         }
