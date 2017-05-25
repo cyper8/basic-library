@@ -20,8 +20,8 @@ const Basic = {
 
 export default Basic;
   
-export function App(name,dependencies,root){
-    if (!name) throw new Error("App name cannot be empty");
+export function App(dependencies){
+    if (!window.Basic) throw new Error("No framework found in window.Basic");
     var dep = dependencies;
     if (!dep || (!dep.length)) {
         
@@ -38,7 +38,7 @@ export function App(name,dependencies,root){
             dependencies.push(c);
         }
     }
-    return (root || document)[name]=dependencies.reduce(function(m,e,i,a){
+    return window.Basic.App=dependencies.reduce(function(m,e,i,a){
         m[e]=(Basic.System[e]) ? new Basic.System[e]() : "unknown symbol "+e;
         return m;
     },{});
