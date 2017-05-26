@@ -19,15 +19,15 @@ export function ajax(req){
     }
     var xhr = new XMLHttpRequest();
     xhr.request = req;
-    if (typeof xhr.request.resulthandler === "undefined") {
+    if (typeof req.resulthandler === "undefined") {
         throw new Error("ajax: no handler function!");
     }
     xhr.handler = function(something){
-        if (typeof xhr.request.resulthandler === 'function'){
-            xhr.request.resulthandler(something);
+        if (typeof req.resulthandler === 'function'){
+            req.resulthandler(something);
         }
-        else if (typeof xhr.request.resulthandler === 'object'){
-            xhr.request.resulthandler.innerHTML = something;
+        else if (typeof req.resulthandler === 'object'){
+            req.resulthandler.innerHTML = something;
         }
     };
     xhr.addEventListener("readystatechange",function(e){
@@ -44,38 +44,38 @@ export function ajax(req){
     xhr.addEventListener("error",function(e){
         xhr.handler(e);
     });
-    if (xhr.request.progresshandler){
-        if (typeof xhr.request.progresshandler === "function") {
+    if (req.progresshandler){
+        if (typeof req.progresshandler === "function") {
             (xhr.upload?xhr.upload:xhr).onprogress = function(e){
-                xhr.request.progresshandler.call(xhr.request,(e.lengthComputable?(e.loaded/e.total):1));
+                req.progresshandler.call(req,(e.lengthComputable?(e.loaded/e.total):1));
             }
         }
-        else if (typeof xhr.request.progresshandler === "object") {
-            if (typeof xhr.request.progresshandler.setState === "function") {
+        else if (typeof req.progresshandler === "object") {
+            if (typeof req.progresshandler.setState === "function") {
                 (xhr.upload?xhr.upload:xhr).onprogress = function(e){
-                    if (!xhr.request.progresshandler.active) xhr.request.progresshandler.show(xhr.request.progresshandler.total+1)
-                    else xhr.request.progresshandler.value = Math.floor(xhr.request.progresshandler.value)+(e.lengthComputable?(e.loaded-1/e.total):0.99);
+                    if (!req.progresshandler.active) req.progresshandler.show(req.progresshandler.total+1)
+                    else req.progresshandler.value = Math.floor(req.progresshandler.value)+(e.lengthComputable?(e.loaded-1/e.total):0.99);
                 }
             }
         }
     }
-    if (xhr.request.type) {
-        xhr.responseType = xhr.request.type;
+    if (req.type) {
+        xhr.responseType = req.type;
     }
     else {
-			if ((xhr.request.method == "GET") && (xhr.request.url.search(/\.jp[e]?g$/i) > 0)) {
+			if ((req.method == "GET") && (req.url.search(/\.jp[e]?g$/i) > 0)) {
 				xhr.responseType = 'blob';
 			}
 		 }
     (xhr.executesession = function(){
-        xhr.open(xhr.request.method,encodeURI(xhr.request.url),true);
-        if (xhr.request.headers) {
+        xhr.open(req.method,encodeURI(req.url),true);
+        if (req.headers) {
             var h;
-            for (h in xhr.request.headers) {
-                xhr.setRequestHeader(h,xhr.request.headers[h]);
+            for (h in req.headers) {
+                xhr.setRequestHeader(h,req.headers[h]);
             }
         }
-        xhr.send(xhr.request.params);
+        xhr.send(req.params);
     })();
     return xhr;
 }

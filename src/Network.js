@@ -6,17 +6,22 @@ import ajax from 'Ajax';
 
 export default Suspendable((function Network() {
     this._xhr = null;
-    this.active = false;
+    var active = false;
     this.test=function(url,handler){
-        this._xhr = new XMLHttpRequest();
-        this._xhr.addEventListener("readystatechange",function(e){
+        ajax({
+          method: "GET",
+          url:url,
+          resulthandler:handler,
+          progresshandler:false,
+          headers:{}
+        }).addEventListener("readystatechange",function(e){
             var _status;
             if (((this.readyState == 2) && (this.status != 0)) || (this.readyState == 3)) {
                 _status = this.status;
                 this.abort();
                 handler(_status);
             }
-        })
+        });
     };
     this.request=function(req){
         if (req.url == "" || (typeof req.resulthandler !== "function")) return false;
@@ -53,10 +58,10 @@ export default Suspendable((function Network() {
         });
     };
     this.action=function(){
-        if (!this.active){
+        if (!active){
             if (this.length > 0){
                 var r = this[0];
-                this.active = true;
+                active = true;
                 this._xhr = ajax({
                     method: r.method,
                     url: r.url,
@@ -83,7 +88,7 @@ export default Suspendable((function Network() {
         }
         this.pop();
         this._xhr = null;
-        this.active = false;
+        active = false;
         this.action();
     };
 }).extends(Progressable(Fifo)));
