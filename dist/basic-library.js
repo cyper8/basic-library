@@ -64,7 +64,7 @@ var Basic =
 /******/ 	__webpack_require__.p = "";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 21);
+/******/ 	return __webpack_require__(__webpack_require__.s = 22);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -74,25 +74,7 @@ var Basic =
 "use strict";
 
 
-/* global Element, HTMLElement */
-
-var $E = Element,
-    $HE = HTMLElement,
-    $F = Function,
-    $p = "prototype";
-
-$F[$p].extends = function (parent) {
-	if (typeof parent === "function") {
-		this[$p] = new parent();
-		this[$p].constructor = this;
-		this[$p].parent = parent[$p];
-	} else {
-		this[$p] = parent;
-		this[$p].constructor = this;
-		this[$p].parent = parent;
-	}
-	return this;
-};
+__webpack_require__(9);
 
 /***/ }),
 /* 1 */
@@ -373,11 +355,11 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
-var _addWheelListener = __webpack_require__(18);
+var _addWheelListener = __webpack_require__(19);
 
 var _addWheelListener2 = _interopRequireDefault(_addWheelListener);
 
-var _isScrolledIntoView = __webpack_require__(19);
+var _isScrolledIntoView = __webpack_require__(20);
 
 var _isScrolledIntoView2 = _interopRequireDefault(_isScrolledIntoView);
 
@@ -387,9 +369,9 @@ var _Element2 = _interopRequireDefault(_Element);
 
 var _Section = __webpack_require__(6);
 
-var _Controls = __webpack_require__(15);
+var _Controls = __webpack_require__(16);
 
-var _Progress = __webpack_require__(16);
+var _Progress = __webpack_require__(17);
 
 var _Progress2 = _interopRequireDefault(_Progress);
 
@@ -401,7 +383,7 @@ var _Scroll = __webpack_require__(5);
 
 var _Scroll2 = _interopRequireDefault(_Scroll);
 
-var _Scrollable = __webpack_require__(17);
+var _Scrollable = __webpack_require__(18);
 
 var _Scrollable2 = _interopRequireDefault(_Scrollable);
 
@@ -442,25 +424,25 @@ var _UI = __webpack_require__(7);
 
 var _UI2 = _interopRequireDefault(_UI);
 
-var _Modules = __webpack_require__(11);
+var _Modules = __webpack_require__(12);
 
-var _CookieStack = __webpack_require__(10);
+var _CookieStack = __webpack_require__(11);
 
 var _CookieStack2 = _interopRequireDefault(_CookieStack);
 
-var _Network = __webpack_require__(12);
+var _Network = __webpack_require__(13);
 
 var _Network2 = _interopRequireDefault(_Network);
 
-var _Reader = __webpack_require__(13);
+var _Reader = __webpack_require__(14);
 
 var _Reader2 = _interopRequireDefault(_Reader);
 
-var _TimerStack = __webpack_require__(14);
+var _TimerStack = __webpack_require__(15);
 
 var _TimerStack2 = _interopRequireDefault(_TimerStack);
 
-__webpack_require__(20);
+__webpack_require__(21);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -502,6 +484,26 @@ function App(dependencies) {
 
 /***/ }),
 /* 9 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Function["prototype"].extends = function (parent) {
+	if (typeof parent === "function") {
+		this["prototype"] = new parent();
+		this["prototype"].constructor = this;
+		this["prototype"].parent = parent["prototype"];
+	} else {
+		this["prototype"] = parent;
+		this["prototype"].constructor = this;
+		this["prototype"].parent = parent;
+	}
+	return this;
+};
+
+/***/ }),
+/* 10 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -594,7 +596,7 @@ function ajax(req) {
 exports.default = ajax;
 
 /***/ }),
-/* 10 */
+/* 11 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -675,7 +677,7 @@ var CookieStack = function () {
 exports.default = CookieStack;
 
 /***/ }),
-/* 11 */
+/* 12 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -882,7 +884,7 @@ function addStyles(styles, callback) {
 }
 
 /***/ }),
-/* 12 */
+/* 13 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -908,7 +910,7 @@ var _Suspendable = __webpack_require__(4);
 
 var _Suspendable2 = _interopRequireDefault(_Suspendable);
 
-var _Ajax = __webpack_require__(9);
+var _Ajax = __webpack_require__(10);
 
 var _Ajax2 = _interopRequireDefault(_Ajax);
 
@@ -999,7 +1001,7 @@ exports.default = (0, _Suspendable2.default)(function Network() {
 }.extends((0, _Progressable2.default)(_Fifo2.default)));
 
 /***/ }),
-/* 13 */
+/* 14 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1052,7 +1054,7 @@ exports.default = (0, _Suspendable2.default)(function Reader() {
 }.extends((0, _Progressable2.default)(_Fifo2.default)));
 
 /***/ }),
-/* 14 */
+/* 15 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1115,7 +1117,7 @@ var TimerStack = function () {
 exports.default = TimerStack;
 
 /***/ }),
-/* 15 */
+/* 16 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1291,7 +1293,7 @@ function ToggleButton(id, val) {
 };
 
 /***/ }),
-/* 16 */
+/* 17 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1376,7 +1378,7 @@ function progress(desc) {
 };
 
 /***/ }),
-/* 17 */
+/* 18 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1580,7 +1582,7 @@ function Scrollable(elem) {
 }
 
 /***/ }),
-/* 18 */
+/* 19 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1650,7 +1652,7 @@ function addWheelListener(elem, callback, useCapture) {
 };
 
 /***/ }),
-/* 19 */
+/* 20 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1669,13 +1671,13 @@ function isScrolledIntoView(el) {
 }
 
 /***/ }),
-/* 20 */
+/* 21 */
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
 
 /***/ }),
-/* 21 */
+/* 22 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__(8);
